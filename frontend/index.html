@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="main-container">
+        <div class="header">
+            <h1>Event Management System</h1>
+            <div class="nav-buttons">
+                <button id="login-nav-btn">Login</button>
+                <button id="register-nav-btn">Register</button>
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="login-container">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group" id="login-password-group">
+                <label for="login-password">Password (Admin only)</label>
+                <input type="password" id="login-password" placeholder="Enter your password">
+            </div>
+            <button id="login-btn">Login</button>
+            <div id="login-message" class="message"></div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" class="register-container">
+            <h2>Register</h2>
+            <div class="form-group">
+                <label for="register-name">Full Name</label>
+                <input type="text" id="register-name" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group" id="register-password-group">
+                <label for="register-password">Password (Admin only)</label>
+                <input type="password" id="register-password" placeholder="Enter your password">
+            </div>
+            <div class="form-group" id="register-confirm-password-group">
+                <label for="register-confirm-password">Confirm Password (Admin only)</label>
+                <input type="password" id="register-confirm-password" placeholder="Confirm your password">
+            </div>
+            <div class="form-group">
+                <label for="register-role">Account Type</label>
+                <select id="register-role">
+                    <option value="student">Student</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+            <div class="form-group" id="student-id-group">
+                <label for="register-student-id">Student ID</label>
+                <input type="text" id="register-student-id" placeholder="Enter your student ID">
+            </div>
+            <button id="register-btn">Register</button>
+            <div id="register-message" class="message"></div>
+        </div>
+
+        <!-- Event Selection -->
+        <div id="event-selection" class="event-selection">
+            <h2>Select Event</h2>
+            <div class="event-buttons">
+                <button class="event-btn" data-event-id="1">Sports</button>
+                <button class="event-btn" data-event-id="2">Sponsored - Hackathons/Conference/Coding Contest/quiz</button>
+                <button class="event-btn" data-event-id="3">In Campus - Hackathons/Coding Contest/quiz/Workshop</button>
+                <button class="event-btn" data-event-id="4">Certification Courses</button>
+            </div>
+            <button id="selection-logout-btn" class="logout-btn">Logout</button>
+        </div>
+
+        <!-- Event Details Form -->
+        <div id="event-details" class="event-details">
+            <h2 id="event-title">Event Details</h2>
+            
+            <div class="form-group">
+                <label for="studentId">Student ID*</label>
+                <input type="text" id="studentId" required readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Full Name*</label>
+                <input type="text" id="name" required readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="eventDuration">Event Duration*</label>
+                <select id="eventDuration">
+                    <option value="single">Single Day</option>
+                    <option value="multiple">Multiple Days</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="singleDateGroup">
+                <label for="eventDate">Event Date*</label>
+                <input type="date" id="eventDate" required>
+            </div>
+
+            <div id="multipleDateGroup">
+                <div class="form-group">
+                    <label for="eventStartDate">From Date*</label>
+                    <input type="date" id="eventStartDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="eventEndDate">To Date*</label>
+                    <input type="date" id="eventEndDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="numberOfDays">Number of Days</label>
+                    <input type="number" id="numberOfDays" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="photo1">Proof Photo 1* (Mandatory)</label>
+                <input type="file" id="photo1" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="photo2">Proof Photo 2 (Optional)</label>
+                <input type="file" id="photo2" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="certificate">Certificate (Optional)</label>
+                <input type="file" id="certificate" accept=".pdf,.jpg,.jpeg,.png">
+            </div>
+
+            <button id="back-to-events-btn">Back to Events</button>
+            <button id="submit-event-btn">Submit Event</button>
+            <button id="event-logout-btn" class="logout-btn">Logout</button>
+            <div id="event-message" class="message"></div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="admin-panel" class="admin-panel">
+            <h2>Admin Dashboard</h2>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search submissions...">
+                <button id="admin-logout-btn" class="logout-btn">Logout</button>
+            </div>
+            <table id="events-table">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Photos</th>
+                        <th>Certificate</th>
+                        <th>Submitted</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="events-table-body">
+                    <!-- Table rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
